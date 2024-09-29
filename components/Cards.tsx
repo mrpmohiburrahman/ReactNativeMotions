@@ -32,6 +32,13 @@ const Card: React.FC<CardProps> = ({
 
   // Update translateX values and colorProgress based on activeIndex
   useEffect(() => {
+    // Reset colorProgress
+    colorProgress.value = withTiming(
+      activeIndex > 0 || activeIndex < 0 ? 1 : 0,
+      {
+        duration: animationDuration,
+      }
+    );
     switch (activeIndex) {
       case 0:
         // All cards stacked as one
@@ -41,10 +48,7 @@ const Card: React.FC<CardProps> = ({
         translateXThirdCard.value = withTiming(0, {
           duration: animationDuration,
         });
-        // Reset colorProgress
-        colorProgress.value = withTiming(0, {
-          duration: animationDuration,
-        });
+
         break;
       case 1:
         // Two cards visible: second and third cards offset
@@ -54,10 +58,7 @@ const Card: React.FC<CardProps> = ({
         translateXThirdCard.value = withTiming(translateXStep, {
           duration: animationDuration,
         });
-        // Animate colorProgress to 1 for color interpolation
-        colorProgress.value = withTiming(1, {
-          duration: animationDuration,
-        });
+
         break;
       case 2:
         // Three cards visible: second card offset by TRANSLATE_X_STEP, third card by double
@@ -67,10 +68,7 @@ const Card: React.FC<CardProps> = ({
         translateXThirdCard.value = withTiming(translateXStep * 2, {
           duration: animationDuration,
         });
-        // Keep colorProgress at 1
-        colorProgress.value = withTiming(1, {
-          duration: animationDuration,
-        });
+
         break;
       default:
         // For any index beyond 2, maintain the maximum offset
@@ -80,10 +78,7 @@ const Card: React.FC<CardProps> = ({
         translateXThirdCard.value = withTiming(translateXStep * 2, {
           duration: animationDuration,
         });
-        // Keep colorProgress at 1
-        colorProgress.value = withTiming(1, {
-          duration: animationDuration,
-        });
+
         break;
     }
   }, [

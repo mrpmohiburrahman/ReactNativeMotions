@@ -29,16 +29,7 @@ const App: React.FC = () => {
     const today = new Date();
     const difference = getDayDifference(today, selectedDate);
 
-    let newActiveIndex: number;
-    if (difference <= 0) {
-      newActiveIndex = 0;
-    } else if (difference === 1) {
-      newActiveIndex = 1;
-    } else {
-      newActiveIndex = 2;
-    }
-
-    setActiveIndex(newActiveIndex);
+    setActiveIndex(difference);
   };
 
   return (
