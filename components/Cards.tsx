@@ -41,6 +41,7 @@ const Card: React.FC<CardProps> = ({
     );
     switch (activeIndex) {
       case 0:
+        console.log("🚀 ~ useEffect ~ switch: 0");
         // All cards stacked as one
         translateXSecondCard.value = withTiming(0, {
           duration: animationDuration,
@@ -51,31 +52,50 @@ const Card: React.FC<CardProps> = ({
 
         break;
       case 1:
+      case -1:
+        console.log("🚀 ~ useEffect ~ switch: 1");
         // Two cards visible: second and third cards offset
-        translateXSecondCard.value = withTiming(translateXStep, {
-          duration: animationDuration,
-        });
-        translateXThirdCard.value = withTiming(translateXStep, {
-          duration: animationDuration,
-        });
+        translateXSecondCard.value = withTiming(
+          translateXStep * (activeIndex === 1 ? 1 : -1),
+          {
+            duration: animationDuration,
+          }
+        );
+        translateXThirdCard.value = withTiming(
+          translateXStep * (activeIndex === 1 ? 1 : -1),
+          {
+            duration: animationDuration,
+          }
+        );
 
         break;
       case 2:
+      case -2:
+        console.log("🚀 ~ useEffect ~ switch: 2");
         // Three cards visible: second card offset by TRANSLATE_X_STEP, third card by double
-        translateXSecondCard.value = withTiming(translateXStep, {
-          duration: animationDuration,
-        });
-        translateXThirdCard.value = withTiming(translateXStep * 2, {
-          duration: animationDuration,
-        });
+        translateXSecondCard.value = withTiming(
+          translateXStep * (activeIndex === 2 ? 1 : -1),
+          {
+            duration: animationDuration,
+          }
+        );
+        translateXThirdCard.value = withTiming(
+          translateXStep * 2 * (activeIndex === 2 ? 1 : -1),
+          {
+            duration: animationDuration,
+          }
+        );
 
         break;
       default:
         // For any index beyond 2, maintain the maximum offset
-        translateXSecondCard.value = withTiming(translateXStep, {
-          duration: animationDuration,
-        });
-        translateXThirdCard.value = withTiming(translateXStep * 2, {
+        translateXSecondCard.value = withTiming(
+          translateXStep * (activeIndex > 2 ? 1 : -1),
+          {
+            duration: animationDuration,
+          }
+        );
+        translateXThirdCard.value = withTiming(translateXStep * 2 * (activeIndex > 2 ? 1 : -1), {
           duration: animationDuration,
         });
 
