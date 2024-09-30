@@ -1,5 +1,6 @@
 // components/Card.tsx
 
+import { SCREEN_WIDTH } from "@/constants/metrics";
 import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import Animated, {
@@ -82,11 +83,13 @@ const Card: React.FC<CardProps> = ({
 
 const styles = StyleSheet.create({
   cardContainer: {
-    width: CARD_WIDTH + 16, // Adjust width to accommodate maximum offsets
+    width: SCREEN_WIDTH, // Adjust width to accommodate maximum offsets
     height: CARD_HEIGHT + 16, // Adjust height if needed
-    alignSelf: "center",
+    // alignSelf: "center",
+    alignItems: "center",
     justifyContent: "center",
-    marginVertical: 20,
+    // marginVertical: 20,
+    // borderWidth: 1,
   },
   baseCard: {
     position: "absolute",

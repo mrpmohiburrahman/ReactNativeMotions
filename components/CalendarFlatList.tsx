@@ -81,6 +81,7 @@ const CalendarFlatList: React.FC<CalendarFlatListProps> = ({
       viewabilityConfig={viewabilityConfig.current}
       initialScrollIndex={BASE_INDEX}
       getItemLayout={getItemLayout}
+      contentContainerStyle={{ height: 100 }}
     />
   );
 };

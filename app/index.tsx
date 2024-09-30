@@ -1,25 +1,29 @@
-// App.tsx
-
-import CalendarFlatList from "@/components/CalendarFlatList";
-import Card from "@/components/Cards";
-import { getDayDifference } from "@/utis/getDayDifference";
-import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, Text } from "react-native";
+import React from "react";
+import {
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  ListRenderItem,
+} from "react-native";
+import AnimationListItem from "@/components/AnimationListItem";
+import {
+  AnimationListData,
+  AnimationListDataType,
+} from "@/constants/AnimationListData";
 
 const App: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
-
-  const handleDateChange = (selectedDate: Date) => {
-    const today = new Date();
-    const difference = getDayDifference(today, selectedDate);
-    setActiveIndex(difference);
-  };
+  const renderItem: ListRenderItem<AnimationListDataType> = ({ item }) => (
+    <AnimationListItem item={item} />
+  );
 
   return (
     <SafeAreaView style={styles.container}>
-      <Card activeIndex={activeIndex} />
-      <Text style={styles.indexText}>Current Index: {activeIndex}</Text>
-      <CalendarFlatList onDateChange={handleDateChange} />
+      <FlatList
+        data={AnimationListData}
+        contentContainerStyle={{ paddingHorizontal: 20 }}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => `${item.title}-${index}`}
+      />
     </SafeAreaView>
   );
 };
@@ -27,8 +31,9 @@ const App: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#1E3E62",
+    backgroundColor: "#292F3F",
     justifyContent: "center",
+    paddingHorizontal: 10,
   },
   indexText: {
     color: "white",
