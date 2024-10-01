@@ -1,5 +1,6 @@
 import useRobotoFontsHook from "@/hooks/useRobotoFonts";
 import { SplashScreen, Stack } from "expo-router";
+import React from "react";
 import { useEffect } from "react";
 export default function RootLayout() {
   const [loaded, error] = useRobotoFontsHook();
@@ -15,11 +16,13 @@ export default function RootLayout() {
   }
   return (
     <Stack
+      // initialRouteName={"BalloonSlider"}
       screenOptions={{
         headerShown: false,
       }}
     >
       <Stack.Screen name="index" />
+      {/* <Stack.Screen name="BalloonSlider" /> */}
     </Stack>
   );
 }
