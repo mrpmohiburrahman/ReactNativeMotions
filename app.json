@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "notionCalendarAnimation",
-    "slug": "notionCalendarAnimation",
+    "name": "ReactNativeMotions",
+    "slug": "ReactNativeMotions",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -28,7 +28,6 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font",
       "expo-video"
     ],
     "experiments": {
